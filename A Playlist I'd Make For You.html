@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Playlist I'd Make For You</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111111;--paper:#F4F1E8;--pink:#F4A7C1;--wine:#7B2026;--plum:#4B315C;--steel:#777777;
+--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+section{min-height:70vh;padding:12vh 6vw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0}
+.eyebrow{font-size:.72rem;letter-spacing:.35em;color:var(--pink);text-transform:uppercase;margin-bottom:1.5rem}
+.btn{font:700 .8rem var(--sans);letter-spacing:.2em;background:var(--pink);color:var(--ink);border:0;border-radius:99px;padding:1rem 2rem;cursor:pointer;box-shadow:0 0 24px #F4A7C155;transition:.3s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 40px #F4A7C1aa}
+#hero{min-height:100vh;background:radial-gradient(ellipse at 30% 20%,var(--plum),transparent 60%),radial-gradient(ellipse at 80% 90%,var(--wine),transparent 55%),var(--ink);overflow:hidden}
+#hero h1{font-size:clamp(2.4rem,8vw,5.5rem);font-style:italic;position:relative;z-index:2}
+#hero p{color:#F4F1E8bb;margin:1.2rem 0 2.5rem;position:relative;z-index:2}
+#hero .btn{position:relative;z-index:2}
+.float{position:absolute;bottom:-40px;opacity:.5;animation:rise linear infinite;pointer-events:none}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.reveal{opacity:0;transform:translateY(24px);transition:1s}.reveal.in{opacity:1;transform:none}
+#foryou h2{font-size:clamp(1.8rem,5vw,3.2rem);max-width:14em;margin-bottom:2.5rem}
+#foryou p{max-width:26em;color:#F4F1E8cc;font-size:1.1rem}
+/* player */
+#playersec{background:linear-gradient(#111,#1a1220 50%,#111)}
+.mp3{width:min(340px,92vw);border-radius:32px;padding:22px;background:linear-gradient(145deg,#a5a5a5,#5d5d5d 45%,#8a8a8a);box-shadow:0 30px 60px #000c,inset 0 2px 2px #fff8,inset 0 -3px 6px #0006;color:var(--ink)}
+.screen{background:linear-gradient(#1b1226,#111);border-radius:16px;padding:14px;box-shadow:inset 0 3px 10px #000;color:var(--paper);text-align:left}
+.cover{width:100%;aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden;transition:background .6s;display:grid;place-items:center;font:italic 3.5rem var(--serif)}
+.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 25% 15%,#fff4,transparent 45%)}
+.cover.play{animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 30px #F4A7C188}}
+#cur{font-size:.6rem;letter-spacing:.2em;color:var(--pink);margin:12px 0 2px}
+#title{font:italic 1.25rem var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#artist{font-size:.8rem;color:#F4F1E899}
+.bar{height:6px;background:#333;border-radius:9px;margin:12px 0 4px;cursor:pointer;overflow:hidden}
+#fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--wine))}
+.time{display:flex;justify-content:space-between;font-size:.65rem;color:#F4F1E899}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:18px;margin:20px 0 14px}
+.ctrl button{width:46px;height:46px;border-radius:50%;border:0;font-size:1rem;cursor:pointer;color:var(--ink);background:linear-gradient(#e8e8e8,#999);box-shadow:0 4px 8px #0005,inset 0 1px #fff;transition:.15s}
+.ctrl button:active{transform:scale(.92)}
+.ctrl #pp{width:60px;height:60px;background:linear-gradient(#F4A7C1,#c9738f);font-size:1.3rem}
+.vol{display:flex;align-items:center;gap:8px;font-size:.8rem}
+.vol input{flex:1;accent-color:var(--wine)}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:10px;margin-right:6px;vertical-align:middle}
+.eq i{width:2px;background:var(--pink);height:3px}.play~* .eq i,.eqon i{animation:eq .7s ease-in-out infinite alternate}
+.eq i:nth-child(2){animation-delay:.2s!important}.eq i:nth-child(3){animation-delay:.4s!important}
+@keyframes eq{to{height:10px}}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;width:min(1000px,100%);margin-top:2.5rem}
+.card{background:#ffffff08;border:1px solid #ffffff18;border-radius:22px;padding:26px;text-align:left;transition:.4s;cursor:pointer}
+.card:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--pink);box-shadow:0 12px 30px #F4A7C11f}
+.card.dim{opacity:.25}.card.hi{border-color:var(--pink);box-shadow:0 0 30px #F4A7C144}
+.card small{color:var(--pink);letter-spacing:.2em;font-size:.65rem}
+.card h3{font-size:1.3rem;text-transform:uppercase;letter-spacing:.05em;margin:.4rem 0 0}
+.card em{color:var(--steel);font-size:.85rem;font-style:normal}
+.card p{margin:1rem 0 0;color:#F4F1E8cc;font-family:var(--serif);font-style:italic}
+h2.sec{font-size:clamp(1.6rem,4vw,2.6rem)}
+.moods{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:2rem}
+.mood{font:500 .95rem var(--sans);color:var(--paper);background:transparent;border:1px solid var(--steel);border-radius:99px;padding:.8rem 1.4rem;cursor:pointer;transition:.3s}
+.mood:hover{border-color:var(--pink)}.mood.on{background:var(--plum);border-color:var(--pink);box-shadow:0 0 20px #F4A7C144}
+#moodnote{color:var(--steel);margin-top:1.5rem;min-height:1.6em;font-size:.9rem}
+/* chat */
+#chatsec{background:var(--paper);color:var(--ink)}
+#chatsec .eyebrow{color:var(--wine)}
+.chat{width:min(360px,100%);margin:2rem 0;display:flex;flex-direction:column;gap:8px;min-height:230px}
+.msg{max-width:78%;padding:10px 16px;border-radius:20px;font-size:.95rem;opacity:0;transform:translateY(10px) scale(.9);animation:pop .4s forwards;text-align:left}
+.msg.a{align-self:flex-start;background:#ddd7c8;border-bottom-left-radius:6px}
+.msg.b{align-self:flex-end;background:var(--wine);color:var(--paper);border-bottom-right-radius:6px}
+@keyframes pop{to{opacity:1;transform:none}}
+.btn.dark{background:var(--ink);color:var(--paper);box-shadow:none}
+/* stories */
+.stories{display:flex;gap:16px;overflow-x:auto;width:100%;padding:20px 4vw;scroll-snap-type:x mandatory;margin-top:1rem}
+.story{flex:0 0 min(230px,70vw);aspect-ratio:9/16;border-radius:24px;padding:14px;scroll-snap-align:center;display:flex;flex-direction:column;justify-content:space-between;text-align:left;position:relative;overflow:hidden;box-shadow:0 14px 30px #0008;transition:.4s}
+.story:hover{transform:scale(1.03)}
+.prog{display:flex;gap:4px}.prog i{flex:1;height:3px;border-radius:9px;background:#fff5}.prog i.f{background:#fff}
+.story q{font:italic 1.35rem/1.25 var(--serif);quotes:none}
+.mini{background:#0007;backdrop-filter:blur(6px);border-radius:14px;padding:10px 12px;font-size:.75rem;margin-top:12px}
+.mini b{display:block;font-size:.85rem}
+.mini span{color:var(--pink);font-size:.6rem;letter-spacing:.15em}
+#end h2{font-size:clamp(2rem,6vw,4rem);margin:.3rem 0}
+#end p{color:#F4F1E8bb;margin:0}
+#end .btn{margin-top:2.5rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+
+<section id="hero">
+<h1>made this one for you ★</h1>
+<p>because apparently sending a playlist wasn't enough.</p>
+<button class="btn" onclick="go('foryou')">ENTER THE PLAYLIST →</button>
+</section>
+
+<section id="foryou">
+<div class="eyebrow reveal">01 — for you</div>
+<h2 class="reveal">Some songs just remind you of people.</h2>
+<p class="reveal">So I made a little playlist for you.<br><br>Você provavelmente vai odiar algumas.<br>Provavelmente vai gostar de outras.<br>E algumas eu simplesmente coloquei porque combinam com você.</p>
+</section>
+
+<section id="playersec">
+<div class="eyebrow">02 — now playing</div>
+<div class="mp3">
+<div class="screen">
+<div class="cover" id="cover"><span id="glyph">★</span></div>
+<div id="cur"><span class="eq" id="eq"><i></i><i></i><i></i></span><span id="idx"></span></div>
+<div id="title"></div><div id="artist"></div>
+<div class="bar" id="bar"><div id="fill"></div></div>
+<div class="time"><span id="t1">0:00</span><span id="t2">0:00</span></div>
+</div>
+<div class="ctrl"><button id="prev" aria-label="previous">⏮</button><button id="pp" aria-label="play/pause">▶</button><button id="next" aria-label="next">⏭</button></div>
+<div class="vol">🔈<input type="range" id="vol" min="0" max="100" value="70" aria-label="volume"></div>
+</div>
+</section>
+
+<section id="why">
+<div class="eyebrow">03 — why this song?</div>
+<h2 class="sec">Six songs. Six reasons.</h2>
+<div class="grid" id="cards"></div>
+</section>
+
+<section id="moodsec">
+<div class="eyebrow">04 — pick your mood</div>
+<h2 class="sec">What are we feeling today?</h2>
+<div class="moods">
+<button class="mood" data-m="main">★ Main Character</button>
+<button class="mood" data-m="am">☾ 2AM Thoughts</button>
+<button class="mood" data-m="rom">✦ Romanticizing Life</button>
+<button class="mood" data-m="dont">⚡ Don't Talk To Me</button>
+</div>
+<div id="moodnote">the cards above will light up. (tap a card to play it)</div>
+</section>
+
+<section id="chatsec">
+<div class="eyebrow">05 — psst, a secret</div>
+<h2 class="sec">a very real conversation</h2>
+<div class="chat" id="chat"></div>
+<button class="btn dark" id="replay">replay the conversation</button>
+</section>
+
+<section id="storysec">
+<div class="eyebrow">06 — if this were an instagram story</div>
+<h2 class="sec">swipe →</h2>
+<div class="stories" id="stories"></div>
+</section>
+
+<section id="end">
+<h2>Anyway…</h2>
+<p>That's the playlist.</p><p>Don't overthink it.</p><p>Or do. You probably will.</p>
+<button class="btn" id="again">PLAY IT AGAIN ↻</button>
+</section>
+
+<script>
+const S=[
+{t:"Sweet but Psycho",a:"Ava Max",d:187,g:"#F4A7C1,#7B2026",gl:"✦",m:["main","dont"],w:"Because sometimes the energy is completely unhinged, but somehow it still works.",q:"unhinged. and somehow it works."},
+{t:"High By the Beach",a:"Lana Del Rey",d:257,g:"#4B315C,#F4A7C1",gl:"☾",m:["am","rom"],w:"For when reality gets a little too loud.",q:"reality, but turned down a little."},
+{t:"Talk That Talk",a:"Rihanna",d:210,g:"#7B2026,#111111",gl:"♛",m:["main"],w:"Because some conversations really don't need a warning.",q:"no warning. no apology."},
+{t:"vampire",a:"Olivia Rodrigo",d:219,g:"#111111,#7B2026",gl:"♰",m:["dont","am"],w:"For the days you see straight through everyone. Sharp, a little dramatic, deserved.",q:"i saw it coming a mile away."},
+{t:"bad idea right?",a:"Olivia Rodrigo",d:185,g:"#F4A7C1,#4B315C",gl:"⚡",m:["main","rom"],w:"Because the worst ideas make the best stories. (Not legal advice.)",q:"terrible idea. ten out of ten."},
+{t:"we can't be friends (wait for your love)",a:"Ariana Grande",d:230,g:"#777777,#4B315C",gl:"☻",m:["am","rom"],w:"For the nights you overthink everything and just need a song that gets it.",q:"welcome to the 2am overthinking club."}];
+const MN={main:"main character mode: activated.",am:"2AM thoughts. drink some water.",rom:"you're the lead in your own movie today. (I'm the sarcastic best friend.)",dont:"noted. headphones on, I'll go quiet."};
+const $=id=>document.getElementById(id);
+let i=0,p=0,on=false,tm;
+const fmt=s=>Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+function go(id){$(id).scrollIntoView({behavior:"smooth"})}
+function load(n,auto){
+ i=(n+S.length)%S.length;p=0;const s=S[i];
+ $("cover").style.background=`linear-gradient(135deg,${s.g})`;
+ $("glyph").textContent=s.gl;$("title").textContent=s.t;$("artist").textContent=s.a;
+ $("idx").textContent=`TRACK ${i+1} / ${S.length}`;$("t2").textContent=fmt(s.d);
+ $("cover").animate([{opacity:.3,transform:"scale(.94)"},{opacity:1,transform:"none"}],{duration:450,easing:"ease-out"});
+ draw();setPlay(auto??on);
+}
+function draw(){$("fill").style.width=(p/S[i].d*100)+"%";$("t1").textContent=fmt(p)}
+function setPlay(v){on=v;$("pp").textContent=v?"❚❚":"▶";$("cover").classList.toggle("play",v);$("eq").classList.toggle("eqon",v);
+ clearInterval(tm);if(v)tm=setInterval(()=>{p++;if(p>=S[i].d)load(i+1,true);else draw()},1000)}
+$("pp").onclick=()=>setPlay(!on);
+$("next").onclick=()=>load(i+1);$("prev").onclick=()=>p>3?(p=0,draw()):load(i-1);
+$("bar").onclick=e=>{const r=$("bar").getBoundingClientRect();p=Math.floor((e.clientX-r.left)/r.width*S[i].d);draw()};
+$("vol").oninput=e=>{$("cover").style.filter=`brightness(${.6+e.target.value/250})`};
+// cards
+$("cards").innerHTML=S.map((s,n)=>`<div class="card" data-n="${n}"><small>0${n+1}</small><h3>${s.t}</h3><em>${s.a}</em><p>${s.w}</p></div>`).join("");
+document.querySelectorAll(".card").forEach(c=>c.onclick=()=>{load(+c.dataset.n,true);go("playersec")});
+// moods
+document.querySelectorAll(".mood").forEach(b=>b.onclick=()=>{
+ const was=b.classList.contains("on");document.querySelectorAll(".mood").forEach(x=>x.classList.remove("on"));
+ const cs=document.querySelectorAll(".card");
+ if(was){cs.forEach(c=>c.classList.remove("dim","hi"));$("moodnote").textContent="";return}
+ b.classList.add("on");$("moodnote").textContent=MN[b.dataset.m];
+ cs.forEach((c,n)=>{const h=S[n].m.includes(b.dataset.m);c.classList.toggle("hi",h);c.classList.toggle("dim",!h)});
+ go("why")});
+// chat
+const C=[["a","You need to sleep."],["b","My school starts late."],["a","That's not an excuse."],["b","Type shi"]];
+let ct=[];
+function chat(){ct.forEach(clearTimeout);$("chat").innerHTML="";
+ C.forEach((m,n)=>ct.push(setTimeout(()=>{const d=document.createElement("div");d.className="msg "+m[0];d.textContent=m[1];$("chat").appendChild(d)},n*1100+300)))}
+$("replay").onclick=chat;
+// stories
+$("stories").innerHTML=S.map((s,n)=>`<div class="story" style="background:linear-gradient(160deg,${s.g})"><div><div class="prog">${S.map((_,k)=>`<i class="${k<=n?'f':''}"></i>`).join("")}</div></div><q>${s.q}</q><div class="mini"><span>♪ NOW PLAYING</span><b>${s.t}</b>${s.a}</div></div>`).join("");
+// end
+$("again").onclick=()=>{go("playersec");load(0,true)};
+// floaters
+const hero=$("hero"),sy=["♪","✦","♫","★","◉","·","♬"];
+for(let k=0;k<22;k++){const f=document.createElement("span");f.className="float";f.textContent=sy[k%sy.length];
+ f.style.cssText=`left:${Math.random()*100}%;font-size:${12+Math.random()*22}px;color:${k%3?'#F4A7C1':'#F4F1E8'};animation-duration:${9+Math.random()*12}s;animation-delay:${-Math.random()*15}s`;hero.appendChild(f)}
+// reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");if(x.target.id==="chatsec"&&!$("chat").children.length)chat()}}),{threshold:.3});
+document.querySelectorAll(".reveal,#chatsec").forEach(el=>io.observe(el));
+load(0,false);
+</script></body></html>
